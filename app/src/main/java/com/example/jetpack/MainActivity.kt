@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,6 +31,13 @@ import com.example.jetpack.ui.theme.JetPackTheme
  *
  * Recomposition :
  * In simple word - Whenever your state changes, it will recreate the UI
+ *
+ * XML vs Compose
+ * setContentView(R.id.layout) || setContent{lambda}
+ * Parent :AppCompatActivity  || ComponentActivity
+ *
+ * we can intermix the view & compose with
+ * <ComposeView> &  composeView.findViewById().setContent
  * */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +50,7 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
-                    sayHello("Akshay")
+
                 }
             }
         }
@@ -50,7 +59,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun sayHello(name:String ,modifier: Modifier = Modifier) {
-    Text(text ="Yeh Hello $name")
+    Surface {
+        Text(text ="Yeh Hello $name")
+    }
 }
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
@@ -58,6 +69,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
+
 }
 
 @Preview(showBackground = true)
@@ -66,4 +78,9 @@ fun GreetingPreview() {
     JetPackTheme {
         Greeting("Android")
     }
+}
+@Preview(showBackground = true, showSystemUi = true, heightDp = 200)
+@Composable
+fun sayHelloPreview(){
+    sayHello(name = "Akshay")
 }
