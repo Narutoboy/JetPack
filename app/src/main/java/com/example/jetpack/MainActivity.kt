@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,17 +15,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
@@ -106,18 +110,64 @@ fun layout() {
     //columnExample()
     //rowExample()
     //boxExample()
-    listViewItemExample(imgId = R.drawable.ic_launcher_foreground, name = "Akshay", occupation = "Mobile Genius")
+    /*listViewItemExample(
+        imgId = R.drawable.ic_launcher_foreground,
+        name = "Akshay",
+        occupation = "Mobile Genius"
+    )*/
+    //modifierExample()
+    circularImage()
 }
+
 @Composable
-fun listViewItemExample(imgId:Int,name:String,occupation:String) {
-Row(Modifier.padding(8.dp)) {
-    Image(painter = painterResource(id = imgId),
-        contentDescription = "Image",
-        modifier = Modifier.size(40.dp),
+fun circularImage() {
+    Image(
+        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+        modifier = Modifier
+            .size(30.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.Blue, CircleShape),
+        contentDescription = "Sharingan"
     )
 }
+
+@Composable
+fun modifierExample() {
+    /* Modifier :
+   * To modify size,display, appearance & behaviour of the composable
+   * Size background color,padding, click Handler
+   * Composition over inheritance
+   * can be chained and sequence matter here
+   *
+   * To make your custom composable function, you should have modifier :Modifier
+   * and in your function chaining.
+   * */
+    Text(
+        text = "Hello",
+        color = Color.White,
+        modifier = Modifier
+            .clickable { }
+            .background(Color.Blue)
+            .size(200.dp)
+            .padding(8.dp)
+            .border(4.dp, Color.Red)
+            .clip(CircleShape)
+            .background(Color.Yellow),
+    )
+}
+
+
+@Composable
+fun listViewItemExample(imgId: Int, name: String, occupation: String, modifier: Modifier) {
+    Row(modifier.padding(8.dp)) {
+        Image(
+            painter = painterResource(id = imgId),
+            contentDescription = "Image",
+            modifier = Modifier.size(40.dp),
+        )
+    }
     Column {
-        Text(text = name, fontWeight =FontWeight.ExtraBold)
+        Text(text = name, fontWeight = FontWeight.ExtraBold)
         Text(text = occupation, fontWeight = FontWeight.Thin, fontSize = 24.sp)
     }
 }
@@ -126,8 +176,14 @@ Row(Modifier.padding(8.dp)) {
 fun boxExample() {
     //Box are similar to frameLayout
     Box(contentAlignment = Alignment.TopEnd) {
-        Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "background")
-        Image(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = "foreground")
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_background),
+            contentDescription = "background"
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "foreground"
+        )
     }
 }
 
