@@ -1,6 +1,7 @@
 package com.example.jetpack
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -100,7 +101,8 @@ fun GreetingPreview() {
     //buttonCompose("Click Me")
     //textFieldCompose()
     //layout()
-    previewItem()
+    //previewItem()
+    recomposeExample()
 }
 
 @Composable
@@ -231,5 +233,26 @@ fun buttonCompose(title: String) {
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Click me"
         )
+    }
+}
+
+/**Recomposition :
+ * Whenever your state(data) change it'll recreate the UI
+ *
+ * Compose function can execute in any order
+ * Compose function can run in parallel
+ * compose function should be pure function: should not have side effect
+ * Re compostion skips as many composable and lambda as possible
+ * Recompostion is optimistic and may be canceled
+ * A composable function might run quite frequently ,as often as every frame of an animation
+ * */
+
+@Composable
+fun recomposeExample(modifier: Modifier = Modifier) {
+    val state = remember { mutableStateOf(0.0) }
+    Log.d("TAG", "recomposeExample: Logged during Initial composition")
+    Button(onClick = { state.value = Math.random() }) {
+        Log.d("TAG", "recomposeExample: Logged during both Composition and Recomposition")
+        Text(text = state.value.toString())
     }
 }
