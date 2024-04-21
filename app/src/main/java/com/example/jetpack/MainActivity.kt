@@ -99,7 +99,8 @@ fun GreetingPreview() {
     //textCompose(name = "Akshay")
     //buttonCompose("Click Me")
     //textFieldCompose()
-    layout()
+    //layout()
+    previewItem()
 }
 
 @Composable

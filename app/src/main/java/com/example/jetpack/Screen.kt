@@ -35,7 +35,6 @@ fun previewItem(modifier: Modifier = Modifier) {
     LazyColumn(content = {
         items(getCategoryList()) { item ->
             blogCategory(img = item.ima, title = item.title, subTitle = item.subTitle)
-
         }
     })
 }
