@@ -1,4 +1,4 @@
-package com.example.jetpack
+package com.example.jetpack.CC
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.jetpack.R
 
 @Preview(heightDp = 500)
 @Composable
