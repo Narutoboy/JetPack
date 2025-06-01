@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -40,7 +41,8 @@ class CoreComposeActivity : ComponentActivity() {
     @Composable
     fun MainScreen() {
         Surface(color = Color.Yellow, modifier = Modifier.fillMaxSize()) {
-            Row {
+            Row(horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically ) {
                 HorizonalColoredBox()
                 HorizonalColoredBox(color=Color.Green)
                 HorizonalColoredBox(color=Color.Red)
