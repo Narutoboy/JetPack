@@ -1,15 +1,14 @@
 package com.example.jetpack.Udemy
 
-import android.inputmethodservice.Keyboard.Row
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
@@ -45,19 +44,29 @@ class CoreComposeActivity : ComponentActivity() {
     @Composable
     fun MainScreen() {
         Surface(color = Color.Yellow, modifier = Modifier.fillMaxSize()) {
-           /* Row(horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically ) {
-                HorizonalColoredBox()
-                HorizonalColoredBox(color=Color.Green)
-                HorizonalColoredBox(color=Color.Red)
+            /* Row(horizontalArrangement = Arrangement.SpaceBetween,
+                 verticalAlignment = Alignment.CenterVertically ) {
+                 HorizonalColoredBox()
+                 HorizonalColoredBox(color=Color.Green)
+                 HorizonalColoredBox(color=Color.Red)
 
-            }*/
+             }*/
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    ColoredSquare()
+                    ColoredSquare(color = Color.Cyan)
+
+                }
                 ColorBox()
-                ColorBox(color=Color.Green)
-                ColorBox(color=Color.Red)
+                ColorBox(color = Color.Green)
+                ColorBox(color = Color.Red)
             }
 
 
@@ -66,22 +75,12 @@ class CoreComposeActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun HorizonalColoredBox(color:Color= Color.Blue) {
-        Surface(color = color, modifier = Modifier
-            .width(100.dp)
-            .height(600.dp)) {
-            Text(
-                text = "Hello ",
-                style = MaterialTheme.typography.displayLarge
-            )
-
-        }
-    }
-@Composable
-    private fun ColorBox(color:Color= Color.Blue) {
-        Surface(color = color, modifier = Modifier
-            .width(350.dp)
-            .height(100.dp)) {
+    private fun HorizonalColoredBox(color: Color = Color.Blue) {
+        Surface(
+            color = color, modifier = Modifier
+                .width(100.dp)
+                .height(600.dp)
+        ) {
             Text(
                 text = "Hello ",
                 style = MaterialTheme.typography.displayLarge
@@ -90,6 +89,31 @@ class CoreComposeActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    private fun ColorBox(color: Color = Color.Blue) {
+        Surface(
+            color = color, modifier = Modifier
+                .width(350.dp)
+                .height(100.dp)
+        ) {
+            Text(
+                text = "Hello ",
+                style = MaterialTheme.typography.displayLarge
+            )
+
+        }
+    }
+
+    @Composable
+    fun ColoredSquare(color: Color = Color.DarkGray) {
+        Surface(
+            color = color, modifier = Modifier
+                .width(100.dp)
+                .height(100.dp)
+        ) {
+            Text(text = "Square")
+        }
+    }
 
     @Preview
     @Composable
