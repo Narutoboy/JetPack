@@ -7,6 +7,7 @@ import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -29,6 +30,9 @@ import androidx.compose.ui.unit.dp
  * Row : to arrange in horizontal manner
  * Box : to arrange in any order/ or in top of each other
  *
+ *
+ * Row having horizontal Arrangement and vertical Alignment
+ * Column having vertical Arrangement and horizontal Alignment
  * */
 class CoreComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -41,12 +45,19 @@ class CoreComposeActivity : ComponentActivity() {
     @Composable
     fun MainScreen() {
         Surface(color = Color.Yellow, modifier = Modifier.fillMaxSize()) {
-            Row(horizontalArrangement = Arrangement.SpaceBetween,
+           /* Row(horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically ) {
                 HorizonalColoredBox()
                 HorizonalColoredBox(color=Color.Green)
                 HorizonalColoredBox(color=Color.Red)
 
+            }*/
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
+                ColorBox()
+                ColorBox(color=Color.Green)
+                ColorBox(color=Color.Red)
             }
 
 
@@ -66,6 +77,19 @@ class CoreComposeActivity : ComponentActivity() {
 
         }
     }
+@Composable
+    private fun ColorBox(color:Color= Color.Blue) {
+        Surface(color = color, modifier = Modifier
+            .width(350.dp)
+            .height(100.dp)) {
+            Text(
+                text = "Hello ",
+                style = MaterialTheme.typography.displayLarge
+            )
+
+        }
+    }
+
 
     @Preview
     @Composable
