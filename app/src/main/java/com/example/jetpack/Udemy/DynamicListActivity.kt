@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,20 +35,29 @@ class DynamicListActivity : ComponentActivity() {
     @Composable
     fun DynamicScreen() {
         val greetingListState = remember { mutableStateListOf<String>("A", "B ", "C", "D", "E") }
-        GreetingList(greetingListState, buttonClick = { greetingListState.add("F") })
+        val textFieldState = remember { mutableStateOf("") }
+        GreetingList(
+            greetingListState,
+            buttonClick = { greetingListState.add(textFieldState.value) },
+            textFieldValue = textFieldState.value,
+            textFieldValueChange = { newValue -> textFieldState.value = newValue })
     }
 
     @Composable
     fun GreetingList(
         nameList: List<String>,
         buttonClick: () -> Unit,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
+        textFieldValue: String,
+        textFieldValueChange: (newValue: String) -> Unit
     ) {
 
         Column {
             for (name in nameList) {
                 Greeting(name = name)
             }
+            val inputState = remember { mutableStateOf("") }
+            TextField(value = textFieldValue, onValueChange = textFieldValueChange)
 
             Button(onClick = buttonClick) {
                 Text("Add new letter")
