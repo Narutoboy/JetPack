@@ -7,30 +7,38 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 
-val nameList: ArrayList<String> = arrayListOf("A", "B ", "C", "D", "E")
 
 class DynamicListActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GreetingList(names = nameList)
+            DynamicScreen()
+
 
         }
     }
 
     @Composable
-    fun GreetingList(names: List<String>, modifier: Modifier = Modifier) {
+    fun DynamicScreen() {
+        GreetingList()
+    }
+
+    @Composable
+    fun GreetingList(modifier: Modifier = Modifier) {
+        val greetingListState = remember { mutableStateListOf<String>("A", "B ", "C", "D", "E") }
         Column {
-            for (name in names) {
+            for (name in greetingListState) {
                 Greeting(name = name)
             }
 
-            Button(onClick = { nameList.add("F") }) {
+            Button(onClick = { greetingListState.add("F") }) {
                 Text("Add new letter")
             }
         }
@@ -44,6 +52,6 @@ class DynamicListActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun GreetingPreview(modifier: Modifier = Modifier) {
-        GreetingList(names = nameList)
+        DynamicScreen()
     }
 }
