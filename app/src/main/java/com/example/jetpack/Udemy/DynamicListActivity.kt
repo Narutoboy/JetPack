@@ -12,7 +12,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-
+/**State Hoisting : is moving a composable state to its called,
+ * making the composable stateless and controlled by its parent
+ *
+ *
+ *
+ * */
 
 class DynamicListActivity : ComponentActivity() {
 
@@ -27,18 +32,23 @@ class DynamicListActivity : ComponentActivity() {
 
     @Composable
     fun DynamicScreen() {
-        GreetingList()
+        val greetingListState = remember { mutableStateListOf<String>("A", "B ", "C", "D", "E") }
+        GreetingList(greetingListState, buttonClick = { greetingListState.add("F") })
     }
 
     @Composable
-    fun GreetingList(modifier: Modifier = Modifier) {
-        val greetingListState = remember { mutableStateListOf<String>("A", "B ", "C", "D", "E") }
+    fun GreetingList(
+        nameList: List<String>,
+        buttonClick: () -> Unit,
+        modifier: Modifier = Modifier
+    ) {
+
         Column {
-            for (name in greetingListState) {
+            for (name in nameList) {
                 Greeting(name = name)
             }
 
-            Button(onClick = { greetingListState.add("F") }) {
+            Button(onClick = buttonClick) {
                 Text("Add new letter")
             }
         }
