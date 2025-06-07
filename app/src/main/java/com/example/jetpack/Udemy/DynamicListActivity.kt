@@ -8,9 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -22,45 +20,37 @@ import androidx.compose.ui.tooling.preview.Preview
  * */
 
 class DynamicListActivity : ComponentActivity() {
-
+    val viewModel = DynamicListViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DynamicScreen()
+            DynamicScreen(viewModel = viewModel)
 
 
         }
     }
 
     @Composable
-    fun DynamicScreen() {
-        val greetingListState = remember { mutableStateListOf<String>("A", "B ", "C", "D", "E") }
-        val textFieldState = remember { mutableStateOf("") }
-        GreetingList(
-            greetingListState,
-            buttonClick = { greetingListState.add(textFieldState.value) },
+    fun DynamicScreen(viewModel: DynamicListViewModel = DynamicListViewModel()) {
+
+        val textFieldState = viewModel.textFieldState.observeAsState("")
+        GreetingMessage(
             textFieldValue = textFieldState.value,
-            textFieldValueChange = { newValue -> textFieldState.value = newValue })
+            textFieldValueChange = { a -> viewModel.onTextChanged(a) })
     }
 
     @Composable
-    fun GreetingList(
-        nameList: List<String>,
-        buttonClick: () -> Unit,
-        modifier: Modifier = Modifier,
+    fun GreetingMessage(
         textFieldValue: String,
         textFieldValueChange: (newValue: String) -> Unit
     ) {
 
         Column {
-            for (name in nameList) {
-                Greeting(name = name)
-            }
-            val inputState = remember { mutableStateOf("") }
+
             TextField(value = textFieldValue, onValueChange = textFieldValueChange)
 
-            Button(onClick = buttonClick) {
-                Text("Add new letter")
+            Button(onClick = { }) {
+                Text("$textFieldValue")
             }
         }
     }
