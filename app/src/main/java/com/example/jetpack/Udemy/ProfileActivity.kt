@@ -1,7 +1,6 @@
 package com.example.jetpack.Udemy
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -21,25 +20,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpack.R
+import com.example.jetpack.ui.theme.JetPackTheme
+import com.example.jetpack.ui.theme.profileCircleColor
 
 class ProfileActivity : ComponentActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContent {
-            MainScreen()
+            JetPackTheme {
+                ProfileScreen()
+            }
         }
     }
 
+
     @Composable
-    fun MainScreen() {
-        Surface(color = Color.Yellow) {
+    fun ProfileScreen() {
+        Surface {
             ProfileCard()
         }
     }
@@ -62,12 +66,12 @@ class ProfileActivity : ComponentActivity() {
         }
     }
 
-    private @Composable
+    @Composable
     fun ProfileImage() {
         Card(
             shape = CircleShape,
             border = BorderStroke(
-                width = 2.dp, color = Color.Yellow,
+                width = 2.dp, color = profileCircleColor
             ),
             modifier = Modifier.padding(16.dp),
 
@@ -83,7 +87,7 @@ class ProfileActivity : ComponentActivity() {
 
     }
 
-    private @Composable
+    @Composable
     fun ProfileContent() {
         Column(
             modifier = Modifier
@@ -105,7 +109,7 @@ class ProfileActivity : ComponentActivity() {
 
     @Preview(showBackground = true)
     @Composable
-    fun MainScreenPreview(modifier: Modifier = Modifier) {
-        MainScreen()
+    fun ProfileScreenPreview(modifier: Modifier = Modifier) {
+        ProfileScreen()
     }
 }
