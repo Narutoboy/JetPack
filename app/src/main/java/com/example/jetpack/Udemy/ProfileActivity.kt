@@ -71,8 +71,7 @@ class ProfileActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ProfileCard(modifier: Modifier = Modifier) {
-
+    fun ProfileCard() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
@@ -132,6 +131,8 @@ class ProfileActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun ProfileScreenPreview(modifier: Modifier = Modifier) {
-        ProfileScreen()
+        JetPackTheme {
+            ProfileScreen()
+        }
     }
 }
