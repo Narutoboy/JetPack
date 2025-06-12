@@ -22,5 +22,113 @@ val userProfileList = arrayListOf(
         about = "Avenger, Hokage in shadows ",
         status = false,
         drawableId = R.drawable.sasuke_pic
-    )
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
+    UserProfile(
+        "Naruto",
+        about = "No 1 knukle head ninja",
+        status = true,
+        drawableId = R.drawable.naruto_pic
+    ),
+    UserProfile(
+        name = "Sasuke",
+        about = "Avenger, Hokage in shadows ",
+        status = false,
+        drawableId = R.drawable.sasuke_pic
+    ),
 )

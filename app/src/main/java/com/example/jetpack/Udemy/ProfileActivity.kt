@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -55,12 +57,11 @@ class ProfileActivity : ComponentActivity() {
     fun ProfileScreen(userProfile: ArrayList<UserProfile>) {
         Scaffold(topBar = { AppBar() }) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                Column {
-                    for (users in userProfile) {
-                        ProfileCard(users)
+                LazyColumn {
+                    items(userProfile) { userProfile ->
+                        ProfileCard(userProfile)
                     }
                 }
-
             }
         }
 
