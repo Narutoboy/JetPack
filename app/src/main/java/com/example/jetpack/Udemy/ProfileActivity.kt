@@ -121,7 +121,7 @@ class ProfileActivity : ComponentActivity() {
             )
             Text(
                 text = "No 1 hyper active knuckle head night",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.alpha(0.6f)
             )
         }
