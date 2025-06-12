@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.example.jetpack.R
 import com.example.jetpack.ui.theme.JetPackTheme
 import com.example.jetpack.ui.theme.profileCircleColor
+import com.example.jetpack.ui.theme.profileCircleDarkColor
 
 class ProfileActivity : ComponentActivity() {
 
@@ -43,7 +44,7 @@ class ProfileActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetPackTheme {
-                ProfileScreen()
+                ProfileScreen(userProfileList)
             }
         }
     }
@@ -51,10 +52,15 @@ class ProfileActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
-    fun ProfileScreen() {
+    fun ProfileScreen(userProfile: ArrayList<UserProfile>) {
         Scaffold(topBar = { AppBar() }) {
             Surface(modifier = Modifier.fillMaxSize()) {
-                ProfileCard()
+                Column {
+                    for (users in userProfile) {
+                        ProfileCard(users)
+                    }
+                }
+
             }
         }
 
@@ -71,7 +77,7 @@ class ProfileActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ProfileCard() {
+    fun ProfileCard(userProfile: UserProfile) {
         Card(
             modifier = Modifier
                 .padding(16.dp)
@@ -79,8 +85,8 @@ class ProfileActivity : ComponentActivity() {
                 .wrapContentHeight()
         ) {
             Row(modifier = Modifier.wrapContentSize()) {
-                ProfileImage()
-                ProfileContent()
+                ProfileImage(drawableId = userProfile.drawableId, status = userProfile.status)
+                ProfileContent(userName = userProfile.name, about = userProfile.about)
 
             }
 
@@ -88,17 +94,17 @@ class ProfileActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ProfileImage() {
+    fun ProfileImage(drawableId: Int = R.drawable.naruto_pic, status: Boolean) {
         Card(
             shape = CircleShape,
             border = BorderStroke(
-                width = 2.dp, color = profileCircleColor
+                width = 2.dp, color = if (status) profileCircleColor else profileCircleDarkColor
             ),
             modifier = Modifier.padding(16.dp),
 
             ) {
             Image(
-                painter = painterResource(R.drawable.naruto_pic),
+                painter = painterResource(drawableId),
                 contentDescription = "Image",
                 modifier = Modifier.size(72.dp),
                 contentScale = ContentScale.Crop
@@ -109,18 +115,18 @@ class ProfileActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ProfileContent() {
+    fun ProfileContent(userName: String, about: String) {
         Column(
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
         ) {
             Text(
-                text = "Naruto Boy",
+                text = userName,
                 style = MaterialTheme.typography.headlineLarge
             )
             Text(
-                text = "No 1 hyper active knuckle head night",
+                text = about,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.alpha(0.6f)
             )
@@ -132,7 +138,7 @@ class ProfileActivity : ComponentActivity() {
     @Composable
     fun ProfileScreenPreview(modifier: Modifier = Modifier) {
         JetPackTheme {
-            ProfileScreen()
+            ProfileScreen(userProfileList)
         }
     }
 }

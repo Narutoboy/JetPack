@@ -12,6 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 
 val profileCircleColor = Color(0xFFB3EC74)
+val profileCircleDarkColor = Color(0xFF020713)
 
 val backgroundDarkColor = Color(0xFFEF862D)
 val backgroundColor = Color(0xFFFAD344)
